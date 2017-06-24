@@ -1,0 +1,10 @@
+Managing virtualenvs
+Now that we have virtualenv installed, let’s make a new virtualenv:
+
+New-VirtualEnvironment engineer
+Replace engineer with whatever you want to call your virtualenv. I usually name it after the project I plan to use that virtualenv for, but whatever you want works.
+
+After the command completes, you should see a PowerShell prompt that looks like this:
+
+(engineer)PS C:\>
+The (engineer) prepended to your prompt reminds you that you’re currently working within that virtualenv. If you type workon now you should see the available virtualenvs, and if you type workon name_of_another_virtualenv you’ll flip to that environment.

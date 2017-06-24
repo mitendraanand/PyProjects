@@ -1,0 +1,87 @@
+Windows PowerShell
+Copyright (C) 2012 Microsoft Corporation. All rights reserved.
+
+PS C:\Users\manan1> Set-ExecutionPolicy RemoteSigned
+
+Execution Policy Change
+The execution policy helps protect you from scripts that you do not trust. Changing the execution policy might expose
+you to the security risks described in the about_Execution_Policies help topic at
+http://go.microsoft.com/fwlink/?LinkID=135170. Do you want to change the execution policy?
+[Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
+PS C:\Users\manan1> pip install virtualenv
+Requirement already satisfied: virtualenv in c:\python27\lib\site-packages
+PS C:\Users\manan1> pip install virtualenvwrapper-powershell
+Requirement already satisfied: virtualenvwrapper-powershell in c:\python27\lib\site-packages
+PS C:\Users\manan1> Import-Module virtualenvwrapper
+Get-Content : Cannot find path 'Function:\TabExpansion' because it does not exist.
+At C:\Users\manan1\Documents\WindowsPowerShell\Modules\virtualenvwrapper\VirtualenvWrapperTabExpansion.psm1:12 char:21
++ $_oldTabExpansion = Get-Content Function:TabExpansion
++                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Function:\TabExpansion:String) [Get-Content], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+
+Virtualenvwrapper: Virtual environments directory 'C:\Users\manan1/.virtualenvs' does not exist. Create it or set
+$env:WORKON_HOME to an existing directory.
+At C:\Users\manan1\Documents\WindowsPowerShell\Modules\virtualenvwrapper\support.psm1:16 char:9
++         throw (new-object `
++         ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (:) [], DirectoryNotFoundException
+    + FullyQualifiedErrorId : Virtualenvwrapper: Virtual environments directory 'C:\Users\manan1/.virtualenvs' does no
+   t exist. Create it or set $env:WORKON_HOME to an existing directory.
+
+Import-Module : The module to process 'virtualenvwrapper', listed in field 'ModuleToProcess/RootModule' of module
+manifest 'C:\Users\manan1\Documents\WindowsPowerShell\Modules\virtualenvwrapper\virtualenvwrapper.psd1' was not
+processed because no valid module was found in any module directory.
+At line:1 char:1
++ Import-Module virtualenvwrapper
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (virtualenvwrapper:String) [Import-Module], PSInvalidOperationExcep
+   tion
+    + FullyQualifiedErrorId : Modules_ModuleFileNotFound,Microsoft.PowerShell.Commands.ImportModuleCommand
+
+PS C:\Users\manan1> mkdir '~\.virtualenvs'
+
+
+    Directory: C:\Users\manan1
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----         6/23/2017   3:32 PM            .virtualenvs
+
+
+PS C:\Users\manan1> Import-Module virtualenvwrapper
+PS C:\Users\manan1> Get-Command *virtualenv*
+
+CommandType     Name                                               ModuleName
+-----------     ----                                               ----------
+Alias           cdvirtualenv -> CDIntoVirtualEnvironment           virtualenvwrapper
+Alias           cpvirtualenv -> Copy-VirtualEnvironment            virtualenvwrapper
+Alias           lsvirtualenv -> Get-VirtualEnvironment             virtualenvwrapper
+Alias           mkvirtualenv -> New-VirtualEnvironment             virtualenvwrapper
+Alias           rmvirtualenv -> Remove-VirtualEnvironment          virtualenvwrapper
+Alias           setvirtualenvproject -> Set-VirtualEnvProject      support
+Function        add2virtualenv                                     virtualenvwrapper
+Function        CDIntoVirtualEnvironment                           virtualenvwrapper
+Function        Copy-VirtualEnvironment                            virtualenvwrapper
+Function        Get-VirtualEnvironment                             virtualenvwrapper
+Function        New-VirtualEnvironment                             virtualenvwrapper
+Function        New-VirtualEnvProject                              support
+Function        Remove-VirtualEnvironment                          virtualenvwrapper
+Function        Set-VirtualEnvironment                             virtualenvwrapper
+Function        Set-VirtualEnvProject                              support
+Function        showvirtualenv                                     virtualenvwrapper
+Function        VerifyVirtualEnv                                   support
+Application     virtualenv.exe
+
+
+PS C:\Users\manan1> New-VirtualEnvironment py_develop_1
+New python executable in C:\Users\manan1\.virtualenvs\py_develop_1\Scripts\python.exe
+Installing setuptools, pip, wheel...done.
+Added activation script por Powershell to C:\Users\manan1/.virtualenvs/py_develop_1\Scripts.
+(py_develop_1)PS C:\Users\manan1> workon
+
+PathInfo                      Name                          PathToScripts                 PathToSitePackages
+--------                      ----                          -------------                 ------------------
+py_develop_1                  py_develop_1                  C:\Users\manan1\.virtualen... C:\Users\manan1\.virtualen...
+
