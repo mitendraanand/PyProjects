@@ -1,0 +1,430 @@
+
+https://www.tutorialspoint.com/execute_python3_online.php
+https://www.onlinegdb.com/online_python_compiler
+##################################################
+# Hello World program in Python
+    
+print ("Hello World!");
+
+n = input()
+l = input()
+k = input()
+
+try:
+    val1 = int(n)
+    val1 = int(k)
+    if (int(k) > int(n)) or (len(l) < int(n)) or (int(k) > len(l)):
+        print ("Invalid Input")
+        import sys
+        sys.exit(1)
+except ValueError:
+    print("That's not an int!")
+    
+l = ''.join(l.split())
+l = l[:int(n)]
+
+print (n)
+print (l)
+print (k)
+        
+from itertools import permutations
+perms = [''.join(p) for p in permutations(l, int(k))]
+print (perms)
+perms_count = len(perms)
+print (perms_count)
+
+a_count = 0
+for p in perms:
+    if 'a' in p:
+        a_count += 1
+        print (p)
+        
+print (a_count)
+
+print (a_count/perms_count)
+        
+=============================================        
+
+data = input().split()
+k = int(data[0])
+m = int(data[1])
+states = [0]
+for i in range(0, k):
+    newstates = []
+    data = input().split()
+    #print(data[1:])
+    for st in data[1:]:
+        d = int(st)
+        for s in states:
+            newtot = (d*d + s) % m
+            if not(newtot in newstates):
+                newstates.append(newtot)
+    states = newstates
+    #print (states)
+print(max(states))
+==============================================
+
+def readints():
+    return [int(fld) for fld in input().split()]
+
+def newposs(poss, arr, MOD):
+    arrsq = [elt*elt%MOD for elt in arr]
+    return set((a+b)%MOD for a in arrsq for b in poss)
+
+k, m = readints()
+poss = {0}
+for _ in range(k):
+    n, *arr = readints()
+    assert len(arr)==n
+    poss = newposs(poss, arr, m)
+print(max(poss))
+
+====================================================
+
+k,m = input().split()
+
+#print(k)
+#print(m)
+
+k = int(k)
+m = int(m)
+
+number_lists = []
+for i in range(0, k):
+    line = input().split()
+    count = int(line[0])
+    number_lists.append(line[1:count+1])
+    
+#print(number_lists)
+
+accumalated_list = [0]
+
+for lst in number_lists:
+    new_accumalated_list = []
+    for item in lst:
+        val = int(item)
+        for d in accumalated_list:
+            val = ((int(item)*int(item)) + int(d)) % m
+            if int(val) not in new_accumalated_list:
+                new_accumalated_list.append(int(val))
+                
+    accumalated_list = new_accumalated_list
+    
+print(max(accumalated_list))
+
+
+=====================================================
+
+n,m = input().split(" ")
+
+n = int(n)
+m = int(m)
+
+#print(n)
+#print(m)
+
+matrix = []
+
+for i in range(0,n):
+    matrix.append(list(input()))
+    
+#print(matrix)
+
+#import numpy 
+#transpose_matrix = numpy.transpose(matrix)
+transpose_matrix = zip(*matrix)
+#print(transpose_matrix)
+
+decoded_script = ""
+for l in transpose_matrix:
+    for i in l:
+        decoded_script = decoded_script + str(i)
+        
+#print(decoded_script)
+
+#decoded_list = list(decoded_script)
+
+#print(decoded_list)
+
+import re
+print(re.sub("([a-zA-Z0-9_])['\W+']+([a-zA-Z0-9_])", r'\1 \2', str(decoded_script)))
+
+===========================================================================================
+
+n,m = input().split(" ")
+n = int(n)
+m = int(m)
+
+#print(n)
+#print(m)
+
+max_value = 0
+zero_array = []
+
+for i in range(0,n):
+    zero_array.append(0)
+
+for i in range(0,m):
+    a,b,k = input().split(" ")
+    a = int(a)
+    b = int(b)
+    k = int(k)
+    #print(a)
+    #print(b)
+    #print(k)
+    
+    for i in range(0,n):
+        #end = len(zero_array) if (b + 1) >= len(zero_array) else (b + 1)
+        print(i)
+        #print(a)
+        #print(b)
+        #print(k)        
+        if (i+1) in range(a,b+1):
+            print("came in")
+            zero_array[i] = zero_array[i] + k
+            #print(zero_array[i])
+    print(zero_array)
+    
+print(max(zero_array))
+            
+===================================================================
+
+N, M = map(int, raw_input().split())
+arr=[0]*(N+2)
+for _m in xrange(0, M):
+    a,b,k = map(int, raw_input().split())
+    arr[a]+=k
+    arr[b+1]-=k
+for n in xrange(2, N+1):
+    arr[n]+=arr[n-1]
+print(max(arr))
+
+=================================================================
+def wrapper(f):
+    def fun(l):
+        final_list = []
+        for number in l:
+            prefix = number[0:len(number)-10]
+            start = 0 if len(prefix) < 1 else len(prefix)
+            final_number = number[start:start+10]
+            final_list.append(final_number)
+            
+        final_list = sorted(final_list)    
+        l = ('\n'.join(''.join(map(str,("+91 {0} {1}").format(s1[0:5], s1[5:10]))) for s1 in final_list))
+        return f(l)
+
+    return fun
+    
+@wrapper
+def sort_phone(l):
+    print(l)
+
+
+if __name__ == '__main__':
+    l = [input() for _ in range(int(input()))]
+    sort_phone(l) 
+    
+==================================================================
+
+def formatName(fun):
+    def wrapper(l):
+        final_list = []
+        for person in l:
+            f,l,a,s = person.split(" ")
+            person_list = []
+            person_list.append(f)
+            person_list.append(l)
+            person_list.append(int(a))
+            person_list.append(s)
+            final_list.append(person_list)
+        
+        final_list.sort(key = lambda x: x[2])
+        return fun(final_list)
+        
+    return wrapper
+
+
+
+
+@formatName
+def printName(l):
+    for person in l:
+        print(("Mr. " if person[3] == "M" else "Ms. ") + person[0] + " " + person[1])
+
+if __name__ == '__main__':
+    l = [input() for _ in range(int(input()))]
+    printName(l) 
+    
+===================================================================
+
+regex_integer_in_range = r"^[0-9]{1,6}$"	# Do not delete 'r'.
+regex_alternating_repetitive_digit_pair = r"(?=((\d)\d\2))"	# Do not delete 'r'.
+
+import re
+P = input()
+
+print (bool(re.match(regex_integer_in_range, P)) 
+and len(re.findall(regex_alternating_repetitive_digit_pair, P)) < 2)
+
+======================================================================
+
+def merge_the_tools(s, k):
+
+    #d = int(len(s) / k)
+
+    #print(s,k,d)
+
+    substr_list = [s[i:i+k] for i in range(0, len(s), k)]
+
+
+    #print(substr_list)
+
+    for sub_str in substr_list:
+        print("".join(sorted("".join(set(sub_str)), key=lambda x: sub_str.index(x))))
+        
+if __name__ == '__main__':
+    string, k = input(), int(input())
+    merge_the_tools(string, k)
+    
+    
+======================================================================
+
+
+n,m = map(int, input().split(" "))
+#print(n,m)
+
+input_array = input().split(" ")
+#print(input_array)
+
+good_array = input().split(" ")
+bad_array = input().split(" ")
+
+score = 0
+for item in input_array:
+    if item in good_array:
+        score = score + 1
+    elif item in bad_array:
+        score = score - 1
+        
+print(score)
+
+======================================================================
+        
+        
+    
+n,m = map(int, input().split(" "))
+#print(n,m)
+
+input_array = list(map(int, input().rstrip().split(" ")))
+good_array = set(map(int, input().split(" ")))
+bad_array = set(map(int, input().split(" ")))
+
+#print(input_array, good_array, bad_array)
+
+#print([element for element in input_array if element in good_array])
+#[x for x in arr if x in A]
+happy = len([element for element in input_array if element in good_array])
+#print(happy)
+
+#print([element for element in input_array if element in bad_array])
+sad = len([element for element in input_array if element in bad_array])
+#print(sad)
+
+print(happy - sad)
+
+#############################################################################
+
+from dateutil.parser import parse
+'''
+d1 = parse('Sat 02 May 2015 19:54:36 +0530')
+print(d1)
+
+d2 = parse('Fri 01 May 2015 13:54:36 -0000')
+print(d2)
+'''
+
+n = int(input().strip())
+
+
+for i in range(0, int(n + n), 2):
+    d1 = parse(str(input().rstrip()))
+    d2 = parse(str(input().rstrip()))
+
+    time_delta = d1 - d2
+    #print(time_delta)
+    print(abs(int(time_delta.total_seconds())))
+    
+###########################################################################
+        
+    
+n = int(input().strip())
+
+#print(n)
+
+from collections import OrderedDict
+od = OrderedDict()
+
+for i in range(0,n):
+    word = str(input().strip())
+    if (word in od.keys()):
+        od[word] = str(int(od[word]) + 1)
+    else:
+        od[word] = str(1)
+        
+        
+#print(od)        
+print(len(od))
+
+'''
+output = ""
+for key, value in od.items():
+    output = output + " " + str(value)
+print(output.lstrip())
+'''
+
+val_string = ' '.join(od.values())
+print(val_string)
+
+############################################################################
+
+def magicalStrings(n):
+    import itertools
+    perms = list(itertools.permutations(['a','e','i','o','u'], n))
+    res = []
+    for p in perms:
+        l = list(p)
+        for i,c in enumerate(l):
+            if c == 'a':
+                if (i+1 < len(l)):
+                    if not l[i+1] in ['e']:
+                        res.append(l)
+                    else:
+                        res.append(l)
+            if c == 'e':
+                if (i+1 < len(l)):
+                    if not l[i+1] in ['a','i']:
+                        break
+                    else:
+                        res.append(l)
+            if c == 'i':
+                if (i+1 < len(l)):
+                    if not l[i+1] in ['a','e','o','u']:
+                        break
+                    else:
+                        res.append(l)
+            if c == 'o':
+                if (i+1 < len(l)):
+                    if not l[i+1] in ['i', 'u']:
+                        break
+                    else:
+                        res.append(l)
+            if c == 'u':
+                if (i+1 < len(l)):
+                    if not l[i+1] in ['a']:
+                        break
+                    else:
+                        res.append(l)
+                    
+                
+                
+    return len(res)
